@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello WebSocket</title>
+    <link href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/main.css" rel="stylesheet">
+    <script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/1.1.1/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/2.3.1/stomp.min.js"></script>
+    <script src="/app.js"></script>
+</head>
+<body>
+<div id="main-content" class="container">
+
+    <div class="row" style="padding-top: 200px">
+        <div class="col-md-12">
+            <form>
+                <div class="form-group">
+                    <label for="name">customer id</label>
+                    <input type="text" id="cus_id"><br>
+                    <label for="name">password</label>
+                    <input type="text" id="password"><br>
+                    <label for="name">balance</label>
+                    <input type="text" id="balance">
+                </div>
+                <button id="send" class="btn btn-default" type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+    
+</div>
+</body>
+</html>
