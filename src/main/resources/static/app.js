@@ -1,67 +1,72 @@
-var stompClient = null;
-
-function setConnected(connected) {
-    $("#connect").prop("disabled", connected);
-    $("#disconnect").prop("disabled", !connected);
-    if (connected) {
-        $("#conversation").show();
-    }
-    else {
-        $("#conversation").hide();
-    }
-    $("#greetings").html("");
-}
-
-function connect() {
-    var socket = new SockJS('/eb_endpoint');
-    stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
-        setConnected(true);
-        console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/greetings', function (flag) {
-            showGreeting(flag);
-        });
-    });
-}
-
-function disconnect() {
-    if (stompClient !== null) {
-        stompClient.disconnect();
-    }
-    setConnected(false);
-    console.log("Disconnected");
-}
-
-function sendName() {
-    stompClient.send("/app/hello", {}, 
-    				JSON.stringify({
-    					'cus_id': $("#cus_id").val(),
-    					'password': $("#password").val(),
-    					'balance': $("#balance").val(),
-    					'openDate': '20181101'
-    				}));
-}
-
-function showGreeting(flag) {
-	if(1) {
-		console.log("blah blah");
+$(document).ready(function () {
+	hideAllMain();
+	$("#main_login").show();
+	window.stompClient = null;
+	$("#anounce").hide();
+	
+	/**
+	 * route of client app
+	 * switch case by title
+	 * data in content
+	 */
+	function route(msgOut) {
+		var response = JSON.parse(msgOut.body);
+		switch (response.title) {
+			case "role":
+				showViewForSpecificUser(response.content);
+				break;
+			case "blah":
+				break;
+			default:console.log("deo hieu no tra ve gi !");
+		}
 	}
-}
+	/**
+	 * Connect socket to server by username, password, endtry point
+	 * success callback: client subcribe 
+	 * fail callback: call reLogin() to require user relogin
+	 */
+	function connect() {
+	    var socket = new SockJS('/room');
+	    stompClient = Stomp.over(socket);
+	    stompClient.connect({
+	           "username" : $("#username").val(),
+	           "password": $("#password").val()
+	    }, function (frame) { // success callback
+	        console.log('Connected: ' + frame);
+	        stompClient.subscribe('/user/queue/reply', route);
+	        findRole();
+	    }, function (frame) { // fail callback
+	    	reLogin();
+	    });
+	}
+	
+	/**
+	 * after connect socket, send username and password to find role of user
+	 * route "role" handle respone
+	 * if banker then show banker interface else show customer interface
+	 */
+	function findRole() {
+		$("#anounce").hide();
+	    stompClient.send("/app/room", {}, 
+				JSON.stringify({
+				   "username" : $("#username").val(),
+		           "password": $("#password").val()
+				}));
+	}
+	
+	/**
+	 * if login fail, show message require user relogin
+	 */
+	function reLogin() {
+		$("#anounce").show();
+	}
 
-$(function () {
-    $("form").on('submit', function (e) {
-        e.preventDefault();
-    });
-    connect();
-    $( "#disconnect" ).click(function() { disconnect(); });
-    $( "#send" ).click(function() { sendName(); });
-});
-
-//$(function () {
-//    $("form").on('submit', function (e) {
-//        e.preventDefault();
-//    });
-//    $( "#connect" ).click(function() { connect(); });
-//    $( "#disconnect" ).click(function() { disconnect(); });
-//    $( "#send" ).click(function() { sendName(); });
-//});
+	/**
+	 * Run first
+	 */
+	$(function () {
+	    $( "#login" ).click(function() { 
+	    	connect();
+	    });
+	});
+})

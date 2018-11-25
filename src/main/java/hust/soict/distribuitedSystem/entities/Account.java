@@ -1,9 +1,14 @@
 package hust.soict.distribuitedSystem.entities;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Account {
@@ -12,16 +17,16 @@ public class Account {
 	private int ac_no;
 	
 	private int cus_id;
-	
-	private String password;
-	
+		
 	private double balance;
 	
-	private String openDate;
-	
-	public Account(int cus_id, String password, double balance, String openDate) {
+	@Column(name="openDate", columnDefinition="DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date openDate;
+
+	public Account(int cus_id, double balance, Date openDate) {
+		super();
 		this.cus_id = cus_id;
-		this.password = password;
 		this.balance = balance;
 		this.openDate = openDate;
 	}
@@ -30,24 +35,12 @@ public class Account {
 		return ac_no;
 	}
 
-	public void setAc_no(int ac_no) {
-		this.ac_no = ac_no;
-	}
-
-	public Integer getCus_id() {
+	public int getCus_id() {
 		return cus_id;
 	}
 
-	public void setCus_id(Integer cus_id) {
+	public void setCus_id(int cus_id) {
 		this.cus_id = cus_id;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public double getBalance() {
@@ -58,13 +51,11 @@ public class Account {
 		this.balance = balance;
 	}
 
-	public String getOpenDate() {
+	public Date getOpenDate() {
 		return openDate;
 	}
 
-	public void setOpenDate(String openDate) {
+	public void setOpenDate(Date openDate) {
 		this.openDate = openDate;
 	}
-	
-	
 }
