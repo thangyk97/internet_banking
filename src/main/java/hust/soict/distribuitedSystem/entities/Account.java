@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,7 @@ public class Account {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date openDate;
 	
+	@ElementCollection(targetClass=User.class)
 	private Set<User> users;
 
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)

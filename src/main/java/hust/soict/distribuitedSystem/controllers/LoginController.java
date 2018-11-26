@@ -3,7 +3,11 @@ package hust.soict.distribuitedSystem.controllers;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.core.Constants;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -19,10 +23,12 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import hust.soict.distribuitedSystem.Utils;
 import hust.soict.distribuitedSystem.entities.User;
 import hust.soict.distribuitedSystem.repositories.UserRepository;
 
 @Controller
+@Scope("session")
 public class LoginController {
 	@Autowired
 	private UserRepository userRepository;
@@ -31,18 +37,15 @@ public class LoginController {
 	private SimpMessagingTemplate messagingTemplate;
 
 	@MessageMapping("/room")
-	public void findRole(Principal principal, @Payload User user) throws  Exception {
-		JsonObject response = new JsonObject();
-		response.addProperty("title", "role");
-		
+	public void findRole(HttpSession session, Principal principal, @Payload User user) throws  Exception {
+
 		List<User> users =  userRepository.fetchUserBy(user.getUsername(), user.getPassword());
-		
-		Gson gson = new GsonBuilder().create();
-		JsonElement element = gson.toJsonTree(users.get(0),users.get(0).getClass());
-		response.add("content", element);
+
+		String jsonString = "";
+		jsonString = Utils.creatResponseJson("role", users.get(0));
 		
 		messagingTemplate.convertAndSendToUser(user.getUsername(),
 												"/queue/reply",
-												gson.toJson(response));
+												jsonString);
 	}
 }

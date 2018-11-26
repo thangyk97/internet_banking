@@ -34,14 +34,15 @@ public class User {
 	@Column(name = "startTime", columnDefinition="DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date startTime;
-
+	
+	@ManyToOne
 	private Account account;
 	
 	
 	
 	
 	@ManyToOne
-    @JoinColumn(name = "account_id")
+    @JoinColumn(name = "account_ac_no")
 	public Account getAccount() {
 		return account;
 	}
