@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -15,27 +17,38 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	
 	private String username;
 	private String password;
-	
 	private String firstName;
 	private String lastName;
 	private int gender;
 	private String phone;
 	private String email;
+	private String address;
+	private int role;
 	
 	@Column(name="birthday", columnDefinition="DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date birthday;
 	
-	private String address;
-	
-	private int role;
-	
 	@Column(name = "startTime", columnDefinition="DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date startTime;
+
+	private Account account;
+	
+	
+	
+	
+	@ManyToOne
+    @JoinColumn(name = "account_id")
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
 
 	public String getUsername() {
 		return username;

@@ -4,12 +4,12 @@ function hideAllMain() {
 	$("#main_banker").hide();
 }
 
-function showViewForSpecificUser(content) {
+function showViewForSpecificUser(user) {
 	hideAllMain();
-	if (content.role == 0) {
+	if (user.role == 0) {
 		$("#main_cus").show();
-	} else {
+	} else if (user.role == 2) {
 		$("#main_banker").show();
-	}
+	} 
 }
 
