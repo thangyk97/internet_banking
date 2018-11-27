@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
 import hust.soict.distribuitedSystem.Utils;
@@ -20,12 +21,20 @@ public class AccountController {
 	private AccountRepository accountRepository;
 
 	@MessageMapping("/addAccount")
-	public void addUser(Principal principal, @Payload Account account) throws  Exception {
+	public void addUser(Principal principal, 
+			@Payload Account account,
+			StompHeaderAccessor accessor) throws  Exception {
+		
+		System.out.println(account.getOpenDate());
+		
 		accountRepository.save(account);
+
+		String response = Utils.creatResponseJson("addAccountResponse",
+													new String("oke"));
 		
-		String response = Utils.creatResponseJson("addAccountResponse", null);
-		
-		messagingTemplate.convertAndSendToUser("username", "/queue/reply", response);
+		messagingTemplate.convertAndSendToUser(Utils.getUserPrincipal(accessor),
+												"/queue/reply",
+												response);
 	}
 
 }

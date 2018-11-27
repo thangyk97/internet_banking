@@ -49,7 +49,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 			@Override
 			public Message<?> preSend(Message<?> message, MessageChannel channel) 
 					throws AuthenticationException{
-
+				
 				StompHeaderAccessor accessor =
 						MessageHeaderAccessor.getAccessor(message, StompHeaderAccessor.class);
 
