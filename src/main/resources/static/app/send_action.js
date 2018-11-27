@@ -30,18 +30,18 @@ function addUser() {
 //	           "account_ac_no": $("#account_ac_no").val()
 //			}));
     JSON.stringify({
-		   "address" : "hanoi",
+	    "address" : "hanoi",
         "birthday": "1997-10-22",
         "email" : "thangyk97@gmail.com",
-        "first_name": "thang",
+        "firstName": "thang",
         "gender" : 1,
-        "last_name": "nguyen dinh",
+        "lastName": "nguyen dinh",
         "password" : "123456",
         "phone": "0334492548",
         "role" : 1,
-        "start_time": "2018-11-27",
+        "startTime": "2018-11-27",
         "username" : "thangnd",
-        "account_ac_no": 1
+        "ac_no": 1
 		}));
 }
 
@@ -63,6 +63,6 @@ function addAccount() {
 //			}));
     JSON.stringify({
         "balance": 1111111,
-        "open_date" : "2018-11-27",
+        "openDate" : "2018-11-27",
 		}));
 }

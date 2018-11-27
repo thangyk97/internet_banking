@@ -64,7 +64,7 @@ $(document).ready(function () {
 	    	connect();
 	    });
 	    $("#banker_click").click(function() {
-	    	addAccount();
+	    	addUser();
 	    })
 	});
 })

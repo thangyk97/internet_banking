@@ -1,6 +1,5 @@
 package hust.soict.distribuitedSystem.entities;
 
-import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,8 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class Account {
@@ -20,9 +17,8 @@ public class Account {
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private int ac_no;
 	private double balance;
-	@Column(name="openDate", columnDefinition="DATETIME")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date openDate;
+	@Column(name="open_date")
+	private String openDate;
 	
 	@ElementCollection(targetClass=User.class)
 	private Set<User> users;
@@ -48,11 +44,11 @@ public class Account {
 		this.balance = balance;
 	}
 
-	public Date getOpenDate() {
+	public String getOpenDate() {
 		return openDate;
 	}
 
-	public void setOpenDate(Date openDate) {
+	public void setOpenDate(String openDate) {
 		this.openDate = openDate;
 	}
 }

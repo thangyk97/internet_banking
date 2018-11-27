@@ -1,14 +1,10 @@
 package hust.soict.distribuitedSystem.entities;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class Withdraw {
@@ -20,24 +16,13 @@ public class Withdraw {
 	private int cus_id;
 	private double amount;
 	
-	@Column(name="withdraw_date", columnDefinition="DATETIME")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date withdrawDate;
+	@Column(name="withdraw_date")
+	private String withdrawDate;
 	
-	@Column(name="close_date", columnDefinition="DATETIME")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date closeDate;
+	@Column(name="close_date")
+	private String closeDate;
 	private int status;
-	
-	public Withdraw(int ac_no, int cus_id, double amount, Date withdrawDate, Date closeDate, int status) {
-		super();
-		this.ac_no = ac_no;
-		this.cus_id = cus_id;
-		this.amount = amount;
-		this.withdrawDate = withdrawDate;
-		this.closeDate = closeDate;
-		this.status = status;
-	}
+
 
 	public int getId() {
 		return id;
@@ -67,19 +52,19 @@ public class Withdraw {
 		this.amount = amount;
 	}
 
-	public Date getWithdrawDate() {
+	public String getWithdrawDate() {
 		return withdrawDate;
 	}
 
-	public void setWithdrawDate(Date withdrawDate) {
+	public void setWithdrawDate(String withdrawDate) {
 		this.withdrawDate = withdrawDate;
 	}
 
-	public Date getCloseDate() {
+	public String getCloseDate() {
 		return closeDate;
 	}
 
-	public void setCloseDate(Date closeDate) {
+	public void setCloseDate(String closeDate) {
 		this.closeDate = closeDate;
 	}
 

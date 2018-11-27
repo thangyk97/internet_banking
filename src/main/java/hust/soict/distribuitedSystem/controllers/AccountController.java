@@ -25,8 +25,6 @@ public class AccountController {
 			@Payload Account account,
 			StompHeaderAccessor accessor) throws  Exception {
 		
-		System.out.println(account.getOpenDate());
-		
 		accountRepository.save(account);
 
 		String response = Utils.creatResponseJson("addAccountResponse",

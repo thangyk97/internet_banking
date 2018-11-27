@@ -1,7 +1,5 @@
 package hust.soict.distribuitedSystem.entities;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class User {
@@ -27,13 +23,11 @@ public class User {
 	private String address;
 	private int role;
 	
-	@Column(name="birthday", columnDefinition="DATETIME")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date birthday;
+	@Column(name="birthday")
+	private String birthday;
 	
-	@Column(name = "startTime", columnDefinition="DATETIME")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date startTime;
+	@Column(name = "start_time")
+	private String startTime;
 	
 	@ManyToOne
 	private Account account;
@@ -115,19 +109,19 @@ public class User {
 		this.email = email;
 	}
 
-	public Date getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Date startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
