@@ -15,13 +15,15 @@ public class Utils {
 		response.addProperty("title", title);
 		
 		Gson gson = new GsonBuilder().create();
+
 		JsonElement element = gson.toJsonTree(object,object.getClass());
 		response.add("content", element);
-		
+
 		return gson.toJson(response);
 	}
 	
 	public static String getUserPrincipal(StompHeaderAccessor accessor) {
+		
 		UsernamePasswordAuthenticationToken usernameToken = 
 				(UsernamePasswordAuthenticationToken) accessor.getHeader("simpUser");
 		return usernameToken.getPrincipal().toString();

@@ -31,8 +31,15 @@ public class UserController {
 						StompHeaderAccessor accessor) throws  Exception {
 		
 		Optional<Account> a = accountRepository.findById(account.getAc_no());
-		user.setAccount(a.get());
-		userRepository.save(user);
+		if (a.isPresent()) {
+			user.setAccount(a.get());
+			userRepository.save(user);
+		} else {
+			accountRepository.save(account);
+			user.setAccount(account);
+			userRepository.save(user);
+		}
+		
 		
 		String response = Utils.creatResponseJson("addUserResponse", new String("oke"));
 		

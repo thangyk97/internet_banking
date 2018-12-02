@@ -25,6 +25,12 @@ public class Deposit {
 	private int status;
 
 
+	
+	
+	
+	
+	
+	
 	public int getId() {
 		return id;
 	}
