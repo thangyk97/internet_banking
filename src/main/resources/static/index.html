@@ -29,8 +29,6 @@
 			            class="icon-bar"></span> <span class="icon-bar"></span> <span
 			            class="icon-bar"></span>
 			        </button>
-			        <a class="navbar-brand visible-xs-inline-block nav-logo" href="/"><img
-			          src="/images/logo-dark-inset.png" class="img-responsive" alt=""></a>
 			      </div>
 			      <div class="collapse navbar-collapse navbar-ex1-collapse">
 			        <ul class="nav navbar-nav js-nav-add-active-class">
@@ -121,7 +119,57 @@
     </div>
     <!-- End Withdraw -->
     
+    <!-- Deposit -->
+    <div id="banker-deposit" class="row" style="padding-top: 20px">
+    <div class="col-md-4 col-md-offset-4">
+        <form role="form" method="post" id="form-deposit">
+          <h2>Deposit form</h2>
+          <div class="col-md-12">
+            <hr class="colorgraph">
+          </div>
+
+          <label class="col-md-4 control-label">Account no</label>
+          <div class="col-sm-8 form-group">
+              <input type="number" required placeholder="Enter account no.."
+                  class="form-control" id="deposit-ac_no">
+          </div>
+          
+          <label class="col-md-4 control-label">Username</label>
+          <div class="col-sm-8 form-group">
+              <input type="text" required placeholder="Enter username.."
+                  class="form-control" id="deposit-username">
+          </div>
+          
+          <label class="col-md-4 control-label">Amount</label>
+          <div class="col-sm-8 form-group">
+            <input type="number" required placeholder="Enter Amount.."
+              class="form-control" id="deposit-amount">
+          </div>
+          
+          <div class="col-md-12">
+            <hr class="colorgraph">
+          </div>
+          <div id="cus-withdraw-not-enough-money" class="col-md-12" style="display:none">
+            <div class="alert alert-danger" role="alert">
+              <strong>Sorry!</strong> Username and Account no are not correct
+            </div>
+          </div>
+
+          <div class="row col-md-10 col-md-offset-1">
+            <div class="col-xs-6 col-md-6">
+              <input id="btn-deposit" type="button" value="Submit"
+                class="btn btn-success btn-block btn-md" tabindex="7">
+            </div>
+            <div class="col-xs-6 col-md-6">
+              <input class="btn btn-danger btn-block btn-md" type="reset"
+                value="Reset">
+            </div>
+          </div>
+        </form>
+      </div>
     
+    </div>
+    <!-- End Deposit -->
     
     <!-- Create new Account -->
     <div id="banker-create-account" class="row" style="padding-top: 20px">
@@ -226,7 +274,7 @@
     <div id="banker-add-user-2-account" class="row" style="padding-top: 20px">
     <div class="col-md-4 col-md-offset-4">
         <form role="form" method="post" id="form-add-user-2-account">
-          <h2>Create new Account</h2>
+          <h2>Add new user to account</h2>
           <div class="col-md-12">
             <hr class="colorgraph">
           </div>

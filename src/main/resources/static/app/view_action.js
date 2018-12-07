@@ -7,6 +7,7 @@ function hideAllMain() {
 	$("#cus-information").hide();
 	$("#banker-create-account").hide();
 	$("#banker-add-user-2-account").hide();
+	$("#banker-deposit").hide();
 }
 
 /**
@@ -88,6 +89,13 @@ function showAddUser2Account() {
 	$("#header").show();
 	$("#banker-add-user-2-account").show();
 }
+
+function showDepositForm() {
+	hideAllMain();
+	$("#header").show();
+	$("#banker-deposit").show();
+}
+
 
 
 

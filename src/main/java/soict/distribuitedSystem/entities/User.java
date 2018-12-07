@@ -1,4 +1,4 @@
-package hust.soict.distribuitedSystem.entities;
+package soict.distribuitedSystem.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,6 +22,7 @@ public class User {
 	private String email;
 	private String address;
 	private int role;
+	private int flag;
 	
 	@Column(name="birthday")
 	private String birthday;
@@ -139,5 +140,13 @@ public class User {
 
 	public void setRole(int role) {
 		this.role = role;
+	}
+
+	public int getFlag() {
+		return flag;
+	}
+
+	public void setFlag(int flag) {
+		this.flag = flag;
 	}
 }

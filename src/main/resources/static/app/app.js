@@ -69,10 +69,11 @@ $(document).ready(function () {
 	    	connect();
 	    });
 	    $("#banker_click").click(function() {
-	    	addDeposit();
+	    	alert("oc cho nay");
+//	    	addDeposit();
 	    });
 	    $("#customer_click").click(function() {
-	    	addWithdraw();
+//	    	addWithdraw();
 	    });
 		$('#cus-logout').click(function() {
 		    location.reload();
@@ -100,8 +101,14 @@ $(document).ready(function () {
 		$('#header-add-cus-2-account').click(function() {
 			showAddUser2Account();
 		});
-		$('#"btn-add-user-2-account"').click(function() {
+		$('#btn-add-user-2-account').click(function() {
 			addUser2Account();
+		});
+		$("#header-deposit").click(function() {
+			showDepositForm();
+		});
+		$("#btn-deposit").click(function() {
+			addDeposit();
 		})
 	});
 })

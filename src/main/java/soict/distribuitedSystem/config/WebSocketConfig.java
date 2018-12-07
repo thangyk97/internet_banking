@@ -1,4 +1,4 @@
-package hust.soict.distribuitedSystem.config;
+package soict.distribuitedSystem.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -19,8 +19,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.socket.config.annotation.*;
 
-import hust.soict.distribuitedSystem.entities.User;
-import hust.soict.distribuitedSystem.repositories.UserRepository;
+import soict.distribuitedSystem.entities.User;
+import soict.distribuitedSystem.repositoriesA.UserRepositoryA;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ import java.util.List;
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 	@Autowired
-	private UserRepository userRepository;
+	private UserRepositoryA a;
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry config) {
@@ -56,8 +56,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 				if (StompCommand.CONNECT.equals(accessor.getCommand())) {
 					String username = accessor.getFirstNativeHeader("username");
 					String password = accessor.getFirstNativeHeader("password");
-					List<User> users =  userRepository.fetchUserBy(username, password);
-					
+					List<User> users =  a.fetchUserBy(username, password);
+										
 					if (!users.isEmpty()) {
 						List<GrantedAuthority> authorities = new ArrayList<>();
 						authorities.add(new SimpleGrantedAuthority("ROLE_USER"));

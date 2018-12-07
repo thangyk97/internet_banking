@@ -1,4 +1,4 @@
-package hust.soict.distribuitedSystem.entities;
+package soict.distribuitedSystem.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Deposit {
+public class Withdraw {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
@@ -16,21 +16,26 @@ public class Deposit {
 	private int cus_id;
 	private double amount;
 	
-	@Column(name="deposit_date")
-	private String depositDate;
+	@Column(name="withdraw_date")
+	private String withdrawDate;
 	
 	@Column(name="close_date")
 	private String closeDate;
+	@Column(name="open_date")
+	private String openDate;
 	
 	private int status;
 
+	
 
-	
-	
-	
-	
-	
-	
+	public String getOpenDate() {
+		return openDate;
+	}
+
+	public void setOpenDate(String openDate) {
+		this.openDate = openDate;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -43,12 +48,12 @@ public class Deposit {
 		this.ac_no = ac_no;
 	}
 
-	public int getCust_id() {
+	public int getCus_id() {
 		return cus_id;
 	}
 
-	public void setCust_id(int cust_id) {
-		this.cus_id = cust_id;
+	public void setCus_id(int cus_id) {
+		this.cus_id = cus_id;
 	}
 
 	public double getAmount() {
@@ -59,12 +64,12 @@ public class Deposit {
 		this.amount = amount;
 	}
 
-	public String getDepositDate() {
-		return depositDate;
+	public String getWithdrawDate() {
+		return withdrawDate;
 	}
 
-	public void setDepositDate(String depositDate) {
-		this.depositDate = depositDate;
+	public void setWithdrawDate(String withdrawDate) {
+		this.withdrawDate = withdrawDate;
 	}
 
 	public String getCloseDate() {
@@ -82,6 +87,4 @@ public class Deposit {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	
-	
 }

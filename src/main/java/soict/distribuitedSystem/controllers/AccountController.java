@@ -1,4 +1,4 @@
-package hust.soict.distribuitedSystem.controllers;
+package soict.distribuitedSystem.controllers;
 
 import java.security.Principal;
 
@@ -9,21 +9,20 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
-import ch.qos.logback.classic.pattern.Util;
-import hust.soict.distribuitedSystem.Utils;
-import hust.soict.distribuitedSystem.entities.Account;
-import hust.soict.distribuitedSystem.entities.User;
-import hust.soict.distribuitedSystem.repositories.AccountRepository;
-import hust.soict.distribuitedSystem.repositories.UserRepository;
+import soict.distribuitedSystem.Utils;
+import soict.distribuitedSystem.entities.Account;
+import soict.distribuitedSystem.entities.User;
+import soict.distribuitedSystem.repositoriesA.AccountRepositoryA;
+import soict.distribuitedSystem.repositoriesA.UserRepositoryA;
 
 @Controller
 public class AccountController {
 	@Autowired
 	private SimpMessagingTemplate messagingTemplate;
 	@Autowired
-	private AccountRepository accountRepository;
+	private AccountRepositoryA accountRepository;
 	@Autowired
-	private UserRepository userRepository;
+	private UserRepositoryA userRepository;
 	
 	@MessageMapping("/getInforAccount")
 	public void getInforAccount(Principal principal, 

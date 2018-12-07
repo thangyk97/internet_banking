@@ -1,14 +1,16 @@
-package hust.soict.distribuitedSystem.repositories;
+package soict.distribuitedSystem.repositoriesB;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-import hust.soict.distribuitedSystem.entities.User;
+import soict.distribuitedSystem.entities.User;
 
-public interface UserRepository extends CrudRepository<User, Integer>{
+@Repository
+public interface UserRepositoryB extends CrudRepository<User, Integer>{
 	@Query("SELECT a FROM User a WHERE a.username=:username and a.password=:password")
     List<User> fetchUserBy(@Param("username") String username,
     						@Param("password") String password);

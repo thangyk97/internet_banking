@@ -1,4 +1,4 @@
-package hust.soict.distribuitedSystem.config;
+package soict.distribuitedSystem.config;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;

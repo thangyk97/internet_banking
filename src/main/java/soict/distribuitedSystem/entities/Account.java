@@ -1,4 +1,4 @@
-package hust.soict.distribuitedSystem.entities;
+package soict.distribuitedSystem.entities;
 
 import java.util.Set;
 
@@ -17,6 +17,7 @@ public class Account {
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private int ac_no;
 	private double balance;
+	private int flag;
 	@Column(name="open_date")
 	private String openDate;
 	
@@ -27,6 +28,7 @@ public class Account {
 	public Set<User> getUsers() {
 		return users;
 	}
+	
 
 	public void setUsers(Set<User> users) {
 		this.users = users;
@@ -50,5 +52,15 @@ public class Account {
 
 	public void setOpenDate(String openDate) {
 		this.openDate = openDate;
+	}
+
+
+	public int getFlag() {
+		return flag;
+	}
+
+
+	public void setFlag(int flag) {
+		this.flag = flag;
 	}
 }

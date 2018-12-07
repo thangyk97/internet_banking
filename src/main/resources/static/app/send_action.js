@@ -20,43 +20,42 @@ function addUser() {
 			   "address" 		: $("#new-address").val(),
 	           "birthday"		: $("#new-birthday").val(),
 	           "email" 			: $("#new-email").val(),
-	           "first_name"		: $("#new-first_name").val(),
+	           "firstName"		: $("#new-first_name").val(),
 	           "gender" 		: $("#new-gender").val(),
-	           "last_name"		: $("#new-last_name").val(),
+	           "lastName"		: $("#new-last_name").val(),
 	           "password" 		: $("#new-password").val(),
 	           "phone"			: $("#new-phone").val(),
 	           "username" 		: $("#new-username").val(),
 	           "balance"		: $("#new-balance").val(),
-	           "account_ac_no"	: $("#new-account_ac_no").val()
+	           "ac_no"			: $("#new-account_ac_no").val()
 			}));
 
 }
 
 function addUser2Account() {
-	
+    stompClient.send("/app/addUser", {}, 
+			JSON.stringify({
+			   "address" 		: $("#add-address").val(),
+	           "birthday"		: $("#add-birthday").val(),
+	           "email" 			: $("#add-email").val(),
+	           "firstName"		: $("#add-first_name").val(),
+	           "gender" 		: $("#add-gender").val(),
+	           "lastName"		: $("#add-last_name").val(),
+	           "password" 		: $("#add-password").val(),
+	           "phone"			: $("#add-phone").val(),
+	           "username" 		: $("#add-username").val(),
+	           "balance"		: $("#add-balance").val(),
+	           "ac_no"			: $("#add-ac_no").val()
+			}));
 }
 
-function addAccount() {
-    stompClient.send("/app/addAccount", {}, 
-//			JSON.stringify({
-//			   "address" : $("#address").val(),
-//	           "birthday": $("#birthday").val(),
-//	           "email" : $("#email").val(),
-//	           "first_name": $("#first_name").val(),
-//	           "gender" : $("#gender").val(),
-//	           "last_name": $("#last_name").val(),
-//	           "password" : $("#password").val(),
-//	           "phone": $("#phone").val(),
-//	           "role" : $("#role").val(),
-//	           "start_time": $("#start_time").val(),
-//	           "username" : $("#username").val(),
-//	           "account_ac_no": $("#account_ac_no").val()
-//			}));
-    JSON.stringify({
-        "balance": 1111111,
-        "openDate" : "2018-11-27",
-		}));
-}
+//function addAccount() {
+//    stompClient.send("/app/addAccount", {}, 
+//    JSON.stringify({
+//        "balance": 1111111,
+//        "openDate" : "2018-11-27",
+//		}));
+//}
 
 function getInforAccount() {
 	stompClient.send("/app/getInforAccount", {}, "username");
@@ -65,8 +64,9 @@ function getInforAccount() {
 function addDeposit() {
 	stompClient.send("/app/deposit", {},
 			JSON.stringify({
-				"username": "thangnd",
-				"amount": 100
+				"username": $("#deposit-username").val(),
+				"ac_no": $("#deposit-ac_no").val(),
+				"amount": $("#deposit-amount").val()
 			}));
 }
 
