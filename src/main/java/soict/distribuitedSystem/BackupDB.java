@@ -44,11 +44,11 @@ public class BackupDB {
 	@Autowired
 	private DepositRepositoryB depositRepositoryB;
 
-    @Scheduled(cron = "0/20 * * * * ?")
+    @Scheduled(cron = "0 1 0 * * ?")
     public void create() {
-        System.out.println("ababa a");
-        String dateBackup = getYesterdayDateString();
         
+        String dateBackup = getYesterdayDateString();
+        System.out.println("backup for " + dateBackup);
         
         backup_account(dateBackup);
         backup_deposit(dateBackup);
