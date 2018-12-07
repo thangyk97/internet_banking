@@ -18,12 +18,17 @@ $(document).ready(function () {
 				showViewForSpecificUser(response.content);
 				break;
 			case "addUserResponse":
-				console.log(response.content);
+				if(response.content == "oke") {
+					alert("Tạo mới tài khoản thành công !");
+				} else {
+					alert("Tên đăng nhập đã có người sử dụng, vui lòng chọn lại !")
+				};
 				break;
 			case "addAccountResponse":
 				console.log(response.content);
 				break;
 			case "deposit":
+				showDepositResponse(response.content);
 				break;
 			case "withdraw":
 				showWithdrawResponse(response.content);
@@ -31,7 +36,12 @@ $(document).ready(function () {
 			case "inforAccount":
 				showInforAccount(response.content);
 				break;
-			case "":
+			case "addUser2Account":
+				if(response.content == "oke") {
+					alert("Thêm mới người dùng vào tài khoản thành công !");
+				} else {
+					alert("Tên đăng nhập đã có người sử dụng, vui lòng chọn lại !")
+				};
 				break;
 			case "":
 				break;
@@ -87,7 +97,11 @@ $(document).ready(function () {
 		$('#header-home').click(function() {
 			hideAllMain();
 			$('#header').show();
-			$('#main_cus').show();
+			if(user.role == 2) {
+				$('#main_banker').show();
+			} else {
+				$('#main_cus').show();
+			}
 		});
 		$('#btn-withdraw').click(function() {
 			addWithdraw();

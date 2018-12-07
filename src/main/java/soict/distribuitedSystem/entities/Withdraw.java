@@ -16,9 +16,8 @@ public class Withdraw {
 	private int cus_id;
 	private double amount;
 	
-	@Column(name="withdraw_date")
-	private String withdrawDate;
-	
+	@Column(name="updated_at")
+	private String updatedAt;
 	@Column(name="close_date")
 	private String closeDate;
 	@Column(name="open_date")
@@ -27,6 +26,14 @@ public class Withdraw {
 	private int status;
 
 	
+
+	public String getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(String updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 
 	public String getOpenDate() {
 		return openDate;
@@ -63,15 +70,7 @@ public class Withdraw {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-
-	public String getWithdrawDate() {
-		return withdrawDate;
-	}
-
-	public void setWithdrawDate(String withdrawDate) {
-		this.withdrawDate = withdrawDate;
-	}
-
+	
 	public String getCloseDate() {
 		return closeDate;
 	}

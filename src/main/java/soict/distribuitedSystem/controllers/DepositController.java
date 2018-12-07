@@ -1,6 +1,7 @@
 package soict.distribuitedSystem.controllers;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,13 +61,13 @@ public class DepositController {
 				deposit.setCust_id(user.getId());
 				deposit.setAc_no(account.getAc_no());
 				deposit.setStatus(0);
-				deposit.setOpenDate("xxxx-xx-xx");
+				deposit.setOpenDate(LocalDate.now().toString());
 				
 				account.setBalance(account.getBalance() + deposit.getAmount());
 				accountRepositoryA.save(account);
 
 				deposit.setStatus(1);
-				deposit.setCloseDate("xxxx-xx-xx");
+				deposit.setCloseDate(LocalDate.now().toString());
 				depositRepositoryA.save(deposit);
 				
 				response = Utils.creatResponseJson("deposit", new String("pass"));

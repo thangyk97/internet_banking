@@ -1,6 +1,7 @@
 package soict.distribuitedSystem.controllers;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,9 @@ public class LoginController {
 		jsonObject.addProperty("role", user1.getRole());
 		jsonObject.addProperty("first_name", user1.getFirstName());
 		jsonObject.addProperty("last_name", user1.getLastName());
+		jsonObject.addProperty("birthday", user1.getBirthday());
+		jsonObject.addProperty("address", user1.getAddress());
+		
 		if (user1.getRole() != 2) {
 			jsonObject.addProperty("ac_no", user1.getAccount().getAc_no());	
 			

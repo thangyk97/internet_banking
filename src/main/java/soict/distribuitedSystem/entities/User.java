@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class User {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String username;
 	private String password;

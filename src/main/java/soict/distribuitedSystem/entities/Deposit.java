@@ -9,7 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class Deposit {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	private int ac_no;

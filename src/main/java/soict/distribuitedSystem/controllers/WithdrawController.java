@@ -1,6 +1,7 @@
 package soict.distribuitedSystem.controllers;
 
 import java.security.Principal;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -56,7 +57,7 @@ public class WithdrawController {
 			withdraw.setAc_no(account.getAc_no());
 			withdraw.setCus_id(user.getId());
 			withdraw.setStatus(0);
-			withdraw.setOpenDate("xxxx-xx-xx");
+			withdraw.setOpenDate(LocalDate.now().toString());
 			if (user.getFlag() == 0) {
 				withdrawRepositoryA.save(withdraw);
 			} else {
@@ -70,7 +71,8 @@ public class WithdrawController {
 				accountRepositoryA.save(account);
 				
 				withdraw.setStatus(1);
-				withdraw.setCloseDate("xxxx-xx-xx");
+				withdraw.setCloseDate(LocalDate.now().toString());
+				withdraw.setUpdatedAt(LocalDate.now().toString());
 				
 				if (user.getFlag() == 0) {
 					withdrawRepositoryA.save(withdraw);

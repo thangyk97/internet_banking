@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Account {
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int ac_no;
 	private double balance;
 	private int flag;
@@ -33,6 +33,11 @@ public class Account {
 	public void setUsers(Set<User> users) {
 		this.users = users;
 	}
+
+	public void setAc_no(int ac_no) {
+		this.ac_no = ac_no;
+	}
+
 
 	public int getAc_no() {
 		return ac_no;

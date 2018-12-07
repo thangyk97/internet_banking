@@ -1,6 +1,8 @@
 package soict.distribuitedSystem.controllers;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,24 +32,55 @@ public class UserController {
 						@Payload User user, @Payload Account account,
 						StompHeaderAccessor accessor) throws  Exception {
 		String response;
-		User user2 = userRepositoryA.getByUsername(user.getUsername()).get(0);
-		if (user2 == null) {
+		List<User> users = userRepositoryA.getByUsername(user.getUsername());
+		if (users.isEmpty()) {
 			Optional<Account> a = accountRepositoryA.findById(account.getAc_no());
 			if (a.isPresent()) {
 				user.setAccount(a.get());
 				user.setRole(1);
 			} else {
 				account.setFlag(0);
-				account.setOpenDate("2018-11-09");
+				account.setOpenDate(LocalDate.now().toString());
 				accountRepositoryA.save(account);
 				user.setAccount(account);
 			}
-			user.setStartTime("xxxx-11-xx");
+			user.setStartTime(LocalDate.now().toString());
 			userRepositoryA.save(user);
 			
 			response = Utils.creatResponseJson("addUserResponse", new String("oke"));
 		} else {
 			response = Utils.creatResponseJson("addUserResponse", new String("fail"));
+		}
+			
+			
+		messagingTemplate.convertAndSendToUser(Utils.getUserPrincipal(accessor),
+												"/queue/reply",
+												response);
+	}
+	
+	@MessageMapping("/addUser2Account")
+	public void addUser2Account(Principal principal,
+						@Payload User user, @Payload Account account,
+						StompHeaderAccessor accessor) throws  Exception {
+		String response;
+		List<User> users = userRepositoryA.getByUsername(user.getUsername());
+		if (users.isEmpty()) {
+			Optional<Account> a = accountRepositoryA.findById(account.getAc_no());
+			if (a.isPresent()) {
+				user.setAccount(a.get());
+				user.setRole(1);
+			} else {
+				account.setFlag(0);
+				account.setOpenDate(LocalDate.now().toString());
+				accountRepositoryA.save(account);
+				user.setAccount(account);
+			}
+			user.setStartTime(LocalDate.now().toString());
+			userRepositoryA.save(user);
+			
+			response = Utils.creatResponseJson("addUser2Account", new String("oke"));
+		} else {
+			response = Utils.creatResponseJson("addUser2Account", new String("fail"));
 		}
 			
 			

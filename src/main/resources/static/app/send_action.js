@@ -33,7 +33,7 @@ function addUser() {
 }
 
 function addUser2Account() {
-    stompClient.send("/app/addUser", {}, 
+    stompClient.send("/app/addUser2Account", {}, 
 			JSON.stringify({
 			   "address" 		: $("#add-address").val(),
 	           "birthday"		: $("#add-birthday").val(),

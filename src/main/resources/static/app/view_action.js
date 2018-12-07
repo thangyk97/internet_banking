@@ -35,7 +35,16 @@ function showWithdrawResponse(content) {
 	} else if (content == "not_enough_money") {
 		$("#cus-withdraw-not-enough-money").show();
 	} else {
-		alert("oke");
+		alert("Rút tiền thành công");
+	}
+}
+
+function showDepositResponse(content) {
+	$("#banker-deposit-fail").hide();
+	if(content == "fail") {
+		$("#banker-deposit-fail").show();
+	} else {
+		alert("Gửi tiền thành công");
 	}
 }
 
@@ -76,6 +85,8 @@ function showInfoCus(user) {
 			user.last_name.toUpperCase() + " " + user.first_name.toUpperCase());
 	$("#cus-home-no").append(user.ac_no);
 	$("#cus-home-open-date").append(user.open_date);
+	$("#cus-birthday").append(user.birthday);
+	$("#cus-address").append(user.address);
 }
 
 function showCreateNewAccount() {
