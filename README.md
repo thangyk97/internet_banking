@@ -7,4 +7,10 @@ cource project for distributed system
 
 ### SQL create example
 
-insert into User (id, username, password, role, gender, flag) values (1, 'thangnd197', 123456, 2, 1, 0);
+
+
+* create database ds\_a\_db;
+
+* create database ds\_b\_db;
+
+* insert into User (id, username, password, role, gender, flag) values (1, 'thangnd197', 123456, 2, 1, 0);
