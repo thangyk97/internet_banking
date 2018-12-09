@@ -12,6 +12,10 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import soict.distribuitedSystem.Utils;
 import soict.distribuitedSystem.entities.Account;
 import soict.distribuitedSystem.entities.User;
@@ -84,6 +88,41 @@ public class UserController {
 		}
 			
 			
+		messagingTemplate.convertAndSendToUser(Utils.getUserPrincipal(accessor),
+												"/queue/reply",
+												response);
+	}
+	
+	@MessageMapping("/activeAndDeactive")
+	public void activeAndDeactive(Principal principal, 
+							@Payload String message,
+							StompHeaderAccessor accessor) throws  Exception {
+		JsonObject jsonObject = new JsonParser().parse(message).getAsJsonObject();
+		String response = "";
+		List<User> users = userRepositoryA.getByUsername(
+								jsonObject.get("username").getAsString());
+		String type = jsonObject.get("type").getAsString();
+		
+		if (!users.isEmpty()) {
+			User user = users.get(0);
+			if (user.getRole() < 10) {
+				if (type.equals("deactive")) {
+					user.setRole(user.getRole() + 10);
+					userRepositoryA.save(user);
+				}
+			} else {
+				if (type.equals("active")) {
+					user.setRole(user.getRole() - 10);
+					userRepositoryA.save(user);
+				}
+			}
+			
+			response = Utils.creatResponseJson("activeAndDeactive", "oke");
+		} else {
+			response = Utils.creatResponseJson("activeAndDeactive", "fail");
+		}
+		
+		
 		messagingTemplate.convertAndSendToUser(Utils.getUserPrincipal(accessor),
 												"/queue/reply",
 												response);

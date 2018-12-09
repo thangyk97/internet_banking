@@ -8,6 +8,7 @@ function hideAllMain() {
 	$("#banker-create-account").hide();
 	$("#banker-add-user-2-account").hide();
 	$("#banker-deposit").hide();
+	$("#banker-active").hide();
 }
 
 /**
@@ -15,6 +16,12 @@ function hideAllMain() {
  */
 function reLogin() {
 	$("#anounce").show();
+}
+
+function showActiveView() {
+	hideAllMain();
+	$("#header").show();
+	$("#banker-active").show();
 }
 
 function showInforAccount(account) {
@@ -67,6 +74,7 @@ function showViewForSpecificUser(user) {
 		$("#header-create-account").hide();
 		$("#header-history").show();
 		$("#header-info").show();
+		$("#header-active").hide();
 		
 		showInfoCus(user);
 	} else if (user.role == 2) {
@@ -77,6 +85,7 @@ function showViewForSpecificUser(user) {
 		$("#header-create-account").show();
 		$("#header-history").hide();
 		$("#header-info").hide();
+		$("#header-active").show();
 	} 
 }
 

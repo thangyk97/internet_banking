@@ -48,6 +48,7 @@ public class BackupDB {
     public void create() {
         
         String dateBackup = getYesterdayDateString();
+//        String dateBackup = LocalDate.now().toString();
         System.out.println("backup for " + dateBackup);
         
         backup_account(dateBackup);

@@ -38,6 +38,7 @@
 				          <li><a id="header-deposit" href="#">Gửi tiền</a></li> 
 				          <li><a id="header-create-account" href="#">Tạo tài khoản</a></li>
 				          <li><a id="header-add-cus-2-account" href="#">Thêm chủ thẻ vào tài khoản</a></li>
+				          <li><a id="header-active" href="#">Hủy / Kích hoạt tài khoản</a></li>
 			        </ul>
 			        <ul class="nav navbar-nav navbar-right hidden-xs" >
 			            <button id="cus-logout" class="btn btn-default btn-primary" type="button">Đăng xuất</button>
@@ -69,6 +70,43 @@
     </div>
     <!-- end login page -->
     
+    <!-- Active and Deactive -->
+    <div id="banker-active" class="row" style="padding-top: 20px">
+      <div class="col-md-4 col-md-offset-4">
+        <form role="form" method="post" action="WithdrawServlet">
+          <h2>Hủy / Kích hoạt tài khoản</h2>
+          <div class="col-md-12">
+            <hr class="colorgraph">
+          </div>
+
+          <label class="col-md-4 control-label">Tên đăng nhập</label>
+          <div class="col-sm-8 form-group">
+            <input type="text" required placeholder="Enter username.."
+              name="password" class="form-control" id="active-username">
+          </div>
+          <div class="col-md-12">
+            <hr class="colorgraph">
+          </div>
+          <div id="banker-active-annount" class="col-md-12" style="display:none">
+            <div class="alert alert-danger" role="alert">
+              <strong>Xin lỗi!</strong> Tên đăng nhập không tồn tại !.
+            </div>
+          </div>
+          <div class="row col-md-10 col-md-offset-1">
+            <div class="col-xs-6 col-md-6">
+              <input id="btn-active" type="button" value="Kích hoạt"
+                class="btn btn-success btn-block btn-md" tabindex="7">
+            </div>
+            <div class="col-xs-6 col-md-6">
+              <input id="btn-de-active" class="btn btn-danger btn-block btn-md" type="button"
+                value="Hủy kích hoạt">
+            </div>
+          </div>
+        </form>
+        </div>
+    </div>
+    
+    <!-- END Active and Deactive -->
     
     <!-- Withdraw -->
     <div id="cus-withdraw" class="row" style="padding-top: 20px">

@@ -58,7 +58,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 					String password = accessor.getFirstNativeHeader("password");
 					List<User> users =  a.fetchUserBy(username, password);
 										
-					if (!users.isEmpty()) {
+					if (!users.isEmpty() && users.get(0).getRole() < 10 ) {
 						List<GrantedAuthority> authorities = new ArrayList<>();
 						authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 						Authentication auth = new UsernamePasswordAuthenticationToken(username, null, authorities);

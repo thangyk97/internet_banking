@@ -17,7 +17,7 @@ public class User {
 	private String password;
 	private String firstName;
 	private String lastName;
-	private int gender;
+	private String gender;
 	private String phone;
 	private String email;
 	private String address;
@@ -86,11 +86,11 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public int getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(int gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 

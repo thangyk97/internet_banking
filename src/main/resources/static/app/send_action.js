@@ -13,6 +13,15 @@ function findRole() {
 			}));
 }
 
+function activeAndDeactive(type) {
+	$("#banker-active-annount").hide();
+	
+    stompClient.send("/app/activeAndDeactive", {}, 
+			JSON.stringify({
+			   "username" : $("#active-username").val(),
+	           "type": type
+			}));
+}
 
 function addUser() {
     stompClient.send("/app/addUser", {}, 

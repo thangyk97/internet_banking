@@ -43,7 +43,13 @@ $(document).ready(function () {
 					alert("Tên đăng nhập đã có người sử dụng, vui lòng chọn lại !")
 				};
 				break;
-			case "":
+			case "activeAndDeactive":
+				if (response.content == "oke") {
+					$("#banker-active-annount").hide();
+					alert("Đã cập nhật trạng thái cho tài khoản");
+				} else {
+					$("#banker-active-annount").show();
+				}
 				break;
 			default:console.log("deo hieu no tra ve gi !");
 		}
@@ -123,6 +129,15 @@ $(document).ready(function () {
 		});
 		$("#btn-deposit").click(function() {
 			addDeposit();
+		});
+		$("#header-active").click(function() {
+			showActiveView();
+		});
+		$("#btn-active").click(function() {
+			activeAndDeactive("active");
+		});
+		$("#btn-de-active").click(function() {
+			activeAndDeactive("deactive");
 		})
 	});
 })
